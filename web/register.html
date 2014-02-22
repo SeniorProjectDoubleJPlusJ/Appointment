@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script language="JavaScript" src="clientSideInclude.js"></script>
+    </head>
+    <body onLoad="clientSideInclude('roledropdown', 'http://localhost:8080/OnlineAppointmentSystem/webresources/entities.roles/list');">
+        <h2>Register</h2>
+        <form method="post" action="http://localhost:8080/OnlineAppointmentSystem/webresources/entities.users/create">
+            Username: <input type="text" name="username" id="username"> <br>
+            Password: <input type="password" name="password" id="password"> <br>
+            Re-enter Password: <input type="password" name="re_password" id="re_password"> <br>
+            First Name: <input type="text" name="firstname" id="firstname"> <br>
+            Last Name: <input type="text" name="lastname" id="lastname"> <br>
+            Phone: <input type="text" name="phone" id="phone"> <br>
+            Role: <span id="roledropdown"></span><br>
+            <input type="submit" value="Register"/>
+        </form>
+        <form action="http://localhost:8080/OnlineAppointmentSystem/login.html">
+            <input type="submit" value="<< Return to Log In page">
+        </form>
+        <script>
+            function myFunction() {
+                var xmlhttp = null;
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                }
+                else
+                {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function()
+                {
+                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200)
+                    {
+                        return xmlhttp.responseText;
+                    }
+                };
+                xmlhttp.open("GET", "http://localhost:8080/OnlineAppointmentSystem/webresources/entities.users/message", false);
+                xmlhttp.send();
+                alert(xmlhttp.responseText.toString());
+            }
+        </script>
+    </body>
+</html>
